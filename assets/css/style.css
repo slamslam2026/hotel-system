@@ -1,0 +1,1093 @@
+/* ============================================ */
+/* مشروع فندقنا — التصميم الرئيسي */
+/* ============================================ */
+
+/* ========== إعدادات عامة ========== */
+* {
+    box-sizing: border-box;
+}
+/* يطبق box-sizing: border-box على جميع العناصر
+   يجعل الحشوة (padding) والحدود (border) ضمن العرض الكلي للعنصر
+   يمنع تمدد العناصر بشكل غير متوقع */
+
+body {
+    font-family: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
+    /* الخط: Tajawal (يدعم العربية) مع بدائل احتياطية */
+    background-color:  #ebe1e1;
+    /* خلفية فاتحة رمادية-زرقاء لجميع الصفحات */
+    color: #333;
+    /* لون النص الافتراضي */
+    line-height: 1.6;
+    /* تباعد الأسطر (1.6 ضعف حجم الخط) */
+}
+
+/* ============================================ */
+/* HERO SECTION — الصفحة الرئيسية */
+/* ============================================ */
+.hero {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.85), rgba(118, 75, 162, 0.85)),
+                url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600') center/cover !important;
+    /* خلفية مزدوجة:
+       1. تدرج شفاف (بنفسجي/أزرق) بشفافية 85% فوق الصورة
+       2. صورة فندق من Unsplash
+       - 135deg: اتجاه التدرج قطرياً
+       - center/cover: توسيط الصورة وتغطية كامل المساحة
+       - !important: لتجاوز أنماط Bootstrap */
+    color: white;
+    /* لون النص أبيض */
+    padding: 130px 20px;
+    /* حشوة: 130px رأسياً + 20px أفقياً */
+    text-align: center;
+    /* وسط النص */
+    border-radius: 25px;
+    /* زوايا دائرية */
+    margin-bottom: 50px;
+    /* هامش سفلي */
+    position: relative;
+    /* لتمكين العناصر المطلقة داخله */
+    overflow: hidden;
+    /* إخفاء أي محتوى يتجاوز الحدود */
+    box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+    /* ظل بنفسجي كبير */
+}
+
+.hero::before {
+    /* عنصر وهمي (قبل المحتوى) لتأثير إضافي */
+    content: '';
+    /* ضروري لظهور العنصر الوهمي */
+    position: absolute;
+    /* يوضع فوق القسم */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* يملأ كامل القسم */
+    background: radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    /* تدرجان شعاعيان أبيض شفاف لتأثير الإضاءة */
+    opacity: 0.8;
+    /* شفافية 80% */
+    pointer-events: none;
+    /* يمنع التفاعل مع العنصر (لا يعيق النقر) */
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    /* حجم خط كبير */
+    font-weight: 800;
+    /* خط سميك جداً */
+    margin-bottom: 20px;
+    /* هامش سفلي */
+    position: relative;
+    /* لرفعه فوق ::before */
+    text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    /* ظل للنص */
+    z-index: 1;
+    /* فوق العنصر الوهمي */
+}
+
+.hero p,
+.hero .lead {
+    font-size: 1.4rem;
+    /* حجم خط متوسط كبير */
+    margin-bottom: 35px;
+    /* هامش سفلي */
+    position: relative;
+    /* لرفعه فوق ::before */
+    opacity: 0.95;
+    /* شفافية طفيفة */
+    z-index: 1;
+    /* فوق العنصر الوهمي */
+}
+
+.hero .btn {
+    padding: 15px 40px;
+    /* حشوة: 15px رأسياً + 40px أفقياً */
+    font-size: 1.1rem;
+    /* حجم الخط */
+    font-weight: 600;
+    /* وزن الخط شبه سميك */
+    border-radius: 50px;
+    /* زر دائري (حبة الدواء) */
+    position: relative;
+    /* تموضع نسبي */
+    transition: all 0.3s ease;
+    /* انتقال سلس لجميع الخصائص */
+    z-index: 1;
+    /* فوق العنصر الوهمي */
+    margin: 5px;
+    /* هامش 5px */
+}
+
+.hero .btn-warning {
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    /* تدرج أصفر-برتقالي */
+    border: none;
+    /* بدون حدود */
+    color: #333;
+    /* نص رمادي داكن */
+    box-shadow: 0 10px 30px rgba(246, 211, 101, 0.5);
+    /* ظل أصفر */
+}
+
+.hero .btn-warning:hover {
+    transform: translateY(-3px);
+    /* يرتفع 3px عند المرور */
+    box-shadow: 0 15px 40px rgba(246, 211, 101, 0.7);
+    /* ظل أكبر */
+}
+
+.hero .btn-outline-light {
+    background: rgba(255, 255, 255, 0.15);
+    /* خلفية شفافة */
+    backdrop-filter: blur(10px);
+    /* تأثير الزجاج المصنفر */
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    /* حدود شفافة */
+}
+
+.hero .btn-outline-light:hover {
+    background: white;
+    /* يتحول لأبيض */
+    color: #667eea;
+    /* نص بنفسجي */
+    transform: translateY(-3px);
+    /* يرتفع 3px */
+    border-color: white;
+    /* حدود بيضاء */
+}
+
+/* ============================================ */
+/* STAT CARDS — بطاقات الإحصائيات */
+/* ============================================ */
+.stat-card {
+    border: none;
+    /* بدون حدود */
+    border-radius: 20px;
+    /* زوايا دائرية */
+    padding: 35px 25px;
+    /* حشوة */
+    text-align: center;
+    /* وسط النص */
+    color: white;
+    /* نص أبيض */
+    position: relative;
+    /* تموضع نسبي */
+    overflow: hidden;
+    /* إخفاء التجاوز */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* انتقال بمنحنى ارتدادي (bounce) */
+    cursor: pointer;
+    /* مؤشر يد */
+    min-height: 200px;
+    /* أدنى ارتفاع */
+}
+
+.stat-card::before {
+    /* دائرة ضوئية وهمية */
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    /* دائرة كبيرة جداً (ضعف الأبعاد) */
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+    /* تدرج شعاعي أبيض شفاف */
+    transition: all 0.4s ease;
+    pointer-events: none;
+    /* لا يستقبل النقر */
+}
+
+.stat-card:hover::before {
+    top: -30%;
+    right: -30%;
+    /* تتحرك الدائرة عند المرور (تأثير بريق) */
+}
+
+.stat-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    /* يرتفع 10px + يتكبر 3% */
+}
+
+.stat-card i {
+    font-size: 3.5rem;
+    /* أيقونة كبيرة */
+    margin-bottom: 15px;
+    /* هامش سفلي */
+    display: block;
+    /* في سطر منفصل */
+    opacity: 0.95;
+    /* شفافية طفيفة */
+    transition: transform 0.4s ease;
+    /* انتقال سلس */
+    position: relative;
+    /* تموضع نسبي */
+    z-index: 1;
+    /* فوق العنصر الوهمي */
+}
+
+.stat-card:hover i {
+    transform: scale(1.15) rotate(-5deg);
+    /* الأيقونة تتكبر وتميل قليلاً */
+}
+
+.stat-card h2 {
+    font-size: 3rem;
+    /* حجم خط كبير */
+    font-weight: 800;
+    /* سميك جداً */
+    margin: 10px 0;
+    /* هامش رأسي */
+    text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    /* ظل النص */
+    position: relative;
+    /* تموضع نسبي */
+    z-index: 1;
+    /* فوق العنصر الوهمي */
+    line-height: 1;
+    /* بدون تباعد إضافي */
+}
+
+.stat-card p,
+.stat-card small {
+    font-size: 1rem;
+    /* حجم الخط */
+    opacity: 0.95;
+    /* شفافية */
+    margin-bottom: 0;
+    /* بدون هامش سفلي */
+    font-weight: 500;
+    /* وزن متوسط */
+    position: relative;
+    /* تموضع نسبي */
+    z-index: 1;
+    /* فوق العنصر الوهمي */
+}
+
+.stat-card .card-body {
+    position: relative;
+    /* تموضع نسبي */
+    z-index: 1;
+    /* فوق العنصر الوهمي */
+    padding: 0;
+    /* إلغاء حشوة Bootstrap الافتراضية */
+}
+
+/* تدرجات لونية مختلفة لكل بطاقة إحصائية */
+.stat-card.bg-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    /* تدرج أزرق-بنفسجي */
+    box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+    /* ظل بنفسجي */
+}
+
+.stat-card.bg-success {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+    /* تدرج أخضر */
+    box-shadow: 0 15px 35px rgba(17, 153, 142, 0.4);
+    /* ظل أخضر */
+}
+
+.stat-card.bg-warning {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+    /* تدرج وردي-أحمر */
+    box-shadow: 0 15px 35px rgba(245, 87, 108, 0.4);
+    /* ظل وردي */
+}
+
+.stat-card.bg-danger {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%) !important;
+    /* تدرج وردي-أصفر */
+    box-shadow: 0 15px 35px rgba(250, 112, 154, 0.4);
+    /* ظل وردي */
+}
+
+.stat-card.bg-info {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%) !important;
+    /* تدرج أزرق-سماوي */
+    box-shadow: 0 15px 35px rgba(79, 172, 254, 0.4);
+    /* ظل أزرق */
+}
+
+/* ============================================ */
+/* ROOM CARDS — بطاقات الغرف */
+/* ============================================ */
+.room-card {
+    border: none;
+    /* بدون حدود */
+    border-radius: 20px;
+    /* زوايا دائرية */
+    overflow: hidden;
+    /* لإخفاء أجزاء الصورة المتجاوزة */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* انتقال ارتدادي */
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    /* ظل خفيف */
+    background: white;
+    /* خلفية بيضاء */
+}
+
+.room-card:hover {
+    transform: translateY(-12px);
+    /* يرتفع 12px */
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    /* ظل أكبر */
+}
+
+.room-card img {
+    height: 240px;
+    /* ارتفاع ثابت */
+    object-fit: cover;
+    /* الصورة تملأ الإطار دون تشويه */
+    transition: transform 0.6s ease;
+    /* انتقال سلس */
+    width: 100%;
+    /* عرض كامل */
+}
+
+.room-card:hover img {
+    transform: scale(1.1);
+    /* تكبير الصورة 10% عند المرور */
+}
+
+.room-card .card-body {
+    padding: 25px;
+    /* حشوة */
+}
+
+.room-card h5 {
+    font-weight: 700;
+    /* وزن عريض */
+    color: #2d3748;
+    /* لون رمادي داكن */
+    margin-bottom: 10px;
+    /* هامش سفلي */
+}
+
+.room-card .btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* تدرج بنفسجي */
+    border: none;
+    /* بدون حدود */
+    border-radius: 12px;
+    /* زوايا */
+    padding: 12px 24px;
+    /* حشوة */
+    font-weight: 600;
+    /* وزن */
+    transition: all 0.3s ease;
+    /* انتقال */
+}
+
+.room-card .btn-primary:hover {
+    transform: translateY(-2px);
+    /* يرتفع 2px */
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+    /* ظل بنفسجي */
+    background: linear-gradient(135deg, #5568d3 0%, #6a3f8f 100%);
+    /* تدرج أغمق عند المرور */
+}
+
+.room-card .btn-success {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    /* تدرج أخضر */
+    border: none;
+    /* بدون حدود */
+    border-radius: 12px;
+    /* زوايا */
+    font-weight: 600;
+    /* وزن */
+    transition: all 0.3s ease;
+    /* انتقال */
+}
+
+.room-card .btn-success:hover {
+    transform: translateY(-2px);
+    /* يرتفع 2px */
+    box-shadow: 0 10px 20px rgba(17, 153, 142, 0.4);
+    /* ظل أخضر */
+}
+
+/* ============================================ */
+/* CARDS — بطاقات عامة */
+/* ============================================ */
+.card {
+    border: none;
+    /* بدون حدود */
+    border-radius: 16px;
+    /* زوايا */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    /* ظل خفيف */
+    transition: box-shadow 0.3s ease;
+    /* انتقال للظل */
+    background: white;
+    /* خلفية بيضاء */
+}
+
+.card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    /* ظل أكبر عند المرور */
+}
+
+.card-header {
+    border-radius: 16px 16px 0 0 !important;
+    /* زوايا علوية دائرية فقط */
+    border-bottom: 1px solid #e9ecef;
+    /* حد سفلي */
+    padding: 20px 25px;
+    /* حشوة */
+    font-weight: 600;
+    /* وزن */
+}
+
+.card-body {
+    padding: 25px;
+    /* حشوة */
+}
+
+/* ============================================ */
+/* BUTTONS — أزرار عامة */
+/* ============================================ */
+.btn {
+    border-radius: 10px;
+    /* زوايا */
+    padding: 10px 22px;
+    /* حشوة */
+    font-weight: 600;
+    /* وزن */
+    transition: all 0.3s ease;
+    /* انتقال */
+    letter-spacing: 0.3px;
+    /* تباعد طفيف بين الأحرف */
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    /* يرتفع */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    /* ظل */
+}
+
+.btn:active {
+    transform: translateY(0);
+    /* يعود لمكانه عند الضغط */
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* تدرج بنفسجي */
+    border: none;
+    /* بدون حدود */
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #5568d3 0%, #6a3f8f 100%);
+    /* تدرج أغمق */
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    /* تدرج أخضر */
+    border: none;
+    /* بدون حدود */
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #0e8279 0%, #2fd470 100%);
+    /* تدرج أغمق */
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    /* تدرج أصفر-برتقالي */
+    border: none;
+    /* بدون حدود */
+    color: #333;
+    /* نص رمادي داكن */
+}
+
+.btn-warning:hover {
+    color: #333;
+    /* يبقى النص رمادياً */
+}
+
+.btn-lg {
+    padding: 14px 35px;
+    /* حشوة أكبر */
+    font-size: 1.1rem;
+    /* خط أكبر */
+    border-radius: 50px;
+    /* زر كبير بشكل حبة دواء */
+}
+
+/* ============================================ */
+/* FORMS — النماذج */
+/* ============================================ */
+.form-control,
+.form-select {
+    border-radius: 10px;
+    /* زوايا */
+    padding: 12px 18px;
+    /* حشوة */
+    border: 2px solid #e9ecef;
+    /* حدود رمادية */
+    transition: all 0.3s ease;
+    /* انتقال */
+    font-family: inherit;
+    /* يرث الخط من body */
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #667eea;
+    /* حدود بنفسجية عند التركيز */
+    box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.15);
+    /* ظل بنفسجي خفيف */
+    outline: none;
+    /* إزالة الحدود الافتراضية للمتصفح */
+}
+
+.form-label {
+    font-weight: 600;
+    /* وزن */
+    color: #4a5568;
+    /* لون رمادي داكن */
+    margin-bottom: 8px;
+    /* هامش سفلي */
+}
+
+/* ============================================ */
+/* BADGES — الشارات */
+/* ============================================ */
+.badge {
+    padding: 7px 14px;
+    /* حشوة */
+    font-weight: 600;
+    /* وزن */
+    border-radius: 8px;
+    /* زوايا */
+    font-size: 0.85rem;
+    /* حجم خط صغير */
+    letter-spacing: 0.3px;
+    /* تباعد */
+}
+
+.badge.bg-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    /* تدرج بنفسجي */
+}
+
+.badge.bg-success {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+    /* تدرج أخضر */
+}
+
+.badge.bg-warning {
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%) !important;
+    /* تدرج أصفر */
+    color: #333;
+    /* نص رمادي داكن */
+}
+
+/* ============================================ */
+/* TABLES — الجداول */
+/* ============================================ */
+.table {
+    border-radius: 12px;
+    /* زوايا */
+    overflow: hidden;
+    /* إخفاء التجاوز */
+}
+
+.table thead.table-dark {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    /* رأس الجدول بتدرج رمادي داكن */
+    border: none;
+    /* بدون حدود */
+}
+
+.table thead.table-dark th {
+    border: none;
+    /* بدون حدود */
+    padding: 15px 12px;
+    /* حشوة */
+    font-weight: 600;
+    /* وزن */
+    letter-spacing: 0.3px;
+    /* تباعد */
+}
+
+.table tbody tr {
+    transition: all 0.2s ease;
+    /* انتقال سريع */
+}
+
+.table tbody tr:hover {
+    background: rgba(102, 126, 234, 0.05);
+    /* خلفية بنفسجية شفافة جداً */
+    transform: scale(1.005);
+    /* تكبير طفيف جداً */
+}
+
+.table td {
+    padding: 15px 12px;
+    /* حشوة */
+    vertical-align: middle;
+    /* محاذاة عمودية وسطية */
+}
+
+/* ============================================ */
+/* NAVBAR — القائمة العلوية */
+/* ============================================ */
+.navbar {
+    padding: 15px 0;
+    /* حشوة رأسية */
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    /* ظل خفيف */
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    /* حجم خط */
+    font-weight: 800;
+    /* سميك جداً */
+    letter-spacing: 0.5px;
+    /* تباعد */
+}
+
+.navbar .nav-link {
+    font-weight: 500;
+    /* وزن متوسط */
+    padding: 8px 15px !important;
+    /* حشوة مع !important */
+    border-radius: 8px;
+    /* زوايا */
+    transition: all 0.3s ease;
+    /* انتقال */
+    margin: 0 2px;
+    /* هامش جانبي */
+}
+
+.navbar .nav-link:hover {
+    background: rgba(255, 255, 255, 0.1);
+    /* خلفية بيضاء شفافة */
+    transform: translateY(-2px);
+    /* يرتفع */
+}
+
+.navbar .btn-warning {
+    border-radius: 50px;
+    /* زوايا دائرية */
+    padding: 8px 20px;
+    /* حشوة */
+    font-weight: 600;
+    /* وزن */
+}
+
+/* ============================================ */
+/* ALERTS — التنبيهات */
+/* ============================================ */
+.alert {
+    border-radius: 12px;
+    /* زوايا */
+    border: none;
+    /* بدون حدود */
+    padding: 15px 20px;
+    /* حشوة */
+    font-weight: 500;
+    /* وزن */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    /* ظل خفيف */
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+    /* تدرج أخضر فاتح */
+    color: #155724;
+    /* نص أخضر داكن */
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    /* تدرج برتقالي فاتح */
+    color: #721c24;
+    /* نص أحمر داكن */
+}
+
+.alert-warning {
+    background: linear-gradient(135deg, #fef9d7 0%, #ffd89b 100%);
+    /* تدرج أصفر فاتح */
+    color: #856404;
+    /* نص أصفر داكن */
+}
+
+.alert-info {
+    background: linear-gradient(135deg, #d4e9ff 0%, #b8d9ff 100%);
+    /* تدرج أزرق فاتح */
+    color: #0c5460;
+    /* نص أزرق داكن */
+}
+
+/* ============================================ */
+/* FOOTER — ذيل الصفحة */
+/* ============================================ */
+footer {
+    margin-top: 60px !important;
+    /* هامش علوي */
+    padding: 30px 0 !important;
+    /* حشوة رأسية */
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important;
+    /* تدرج رمادي داكن */
+}
+
+footer p {
+    margin-bottom: 0;
+    /* بدون هامش سفلي */
+    font-weight: 500;
+    /* وزن متوسط */
+    letter-spacing: 0.3px;
+    /* تباعد */
+}
+
+/* ============================================ */
+/* RESPONSIVE — للشاشات الصغيرة */
+/* ============================================ */
+@media (max-width: 768px) {
+/* تطبيق هذه الأنماط فقط على الشاشات ≤ 768px (جوال/تابلت صغير) */
+
+    .hero h1 {
+        font-size: 2.2rem;
+        /* تصغير حجم العنوان */
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+        /* تصغير حجم الفقرة */
+    }
+
+    .hero {
+        padding: 80px 15px;
+        /* تقليل الحشوة */
+        border-radius: 15px;
+        /* تصغير الزوايا */
+    }
+
+    .stat-card {
+        padding: 25px 15px;
+        /* تقليل الحشوة */
+        min-height: 160px;
+        /* تقليل الارتفاع الأدنى */
+    }
+
+    .stat-card i {
+        font-size: 2.5rem;
+        /* تصغير الأيقونة */
+    }
+
+    .stat-card h2 {
+        font-size: 2.2rem;
+        /* تصغير الرقم */
+    }
+
+    .hero .btn {
+        padding: 12px 25px;
+        /* تقليل الحشوة */
+        font-size: 1rem;
+        /* تصغير الخط */
+        display: block;
+        /* الأزرار تصبح بعرض كامل (فوق بعضها) */
+        width: 100%;
+        /* عرض كامل */
+        margin: 8px 0;
+        /* هامش رأسي */
+    }
+}
+
+/* ============================================ */
+/* ANIMATIONS — تأثيرات حركية */
+/* ============================================ */
+@keyframes fadeInUp {
+/* تعريف حركة: ظهور + انزلاق من الأسفل للأعلى */
+    from {
+        opacity: 0;
+        /* يبدأ شفافاً */
+        transform: translateY(20px);
+        /* يبدأ من 20px أسفل */
+    }
+    to {
+        opacity: 1;
+        /* ينتهي كاملاً */
+        transform: translateY(0);
+        /* ينتهي في مكانه */
+    }
+}
+
+.card,
+.stat-card,
+.room-card {
+    animation: fadeInUp 0.5s ease-out;
+    /* تطبيق الحركة على البطاقات */
+}
+
+/* تأثير نبض للأرقام */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    /* البداية والنهاية: الحجم الطبيعي */
+    50% { transform: scale(1.05); }
+    /* المنتصف: يتكبر 5% */
+}
+
+.stat-card:hover h2 {
+    animation: pulse 1s ease-in-out infinite;
+    /* نبض مستمر عند المرور */
+}
+
+/* ============================================ */
+/* تحسينات إضافية — Animations & Effects */
+/* ============================================ */
+
+@keyframes fadeIn {
+/* ظهور تدريجي فقط (بدون حركة) */
+    from { opacity: 0; }
+    /* يبدأ شفافاً */
+    to { opacity: 1; }
+    /* ينتهي كاملاً */
+}
+
+@keyframes slideInRight {
+/* انزلاق من اليمين (مناسب للعربية) */
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+        /* يبدأ من 30px يميناً */
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+        /* ينتهي في مكانه */
+    }
+}
+
+@keyframes shimmer {
+/* تأثير لمعان متحرك (للشرائط) */
+    0% { background-position: -1000px 0; }
+    /* يبدأ من اليسار */
+    100% { background-position: 1000px 0; }
+    /* ينتهي عند اليمين */
+}
+
+@keyframes spin {
+/* دوران كامل (للـ Loader) */
+    0% { transform: rotate(0deg); }
+    /* البداية */
+    100% { transform: rotate(360deg); }
+    /* دورة كاملة */
+}
+
+.alert {
+    animation: slideInRight 0.4s ease-out;
+    /* التنبيهات تنزلق من اليمين */
+}
+
+/* تحسين شكل البطاقات */
+.card {
+    border: none;
+    /* بدون حدود */
+    border-radius: 16px;
+    /* زوايا */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    /* ظل خفيف */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* انتقال ارتدادي */
+    overflow: hidden;
+    /* إخفاء التجاوز */
+    position: relative;
+    /* تموضع نسبي */
+}
+
+.card::before {
+    /* شريط لوني علوي (متدرج) */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    /* ارتفاع الشريط */
+    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #f5576c);
+    /* تدرج رباعي الألوان */
+    background-size: 300% 100%;
+    /* عرض أكبر من العنصر (للتحريك) */
+    opacity: 0;
+    /* مخفي افتراضياً */
+    transition: opacity 0.4s ease;
+    /* انتقال للظهور */
+    animation: shimmer 3s linear infinite;
+    /* لمعان مستمر */
+}
+
+.card:hover::before {
+    opacity: 1;
+    /* يظهر عند المرور */
+}
+
+.card:hover {
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.15);
+    /* ظل بنفسجي */
+    transform: translateY(-5px);
+    /* يرتفع 5px */
+}
+
+/* تحسين شكل الأزرار */
+.btn {
+    position: relative;
+    /* تموضع نسبي */
+    overflow: hidden;
+    /* إخفاء التجاوز */
+}
+
+.btn::after {
+    /* دائرة ضوئية داخل الزر */
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    /* يبدأ بحجم 0 */
+    border-radius: 50%;
+    /* دائرة */
+    background: rgba(255, 255, 255, 0.3);
+    /* أبيض شفاف */
+    transform: translate(-50%, -50%);
+    /* توسيط */
+    transition: width 0.6s ease, height 0.6s ease;
+    /* انتقال للحجم */
+}
+
+.btn:hover::after {
+    width: 300px;
+    height: 300px;
+    /* تتوسع عند المرور (تأثير موجة) */
+}
+
+/* تحسين شكل الشارات */
+.badge {
+    transition: all 0.3s ease;
+    /* انتقال */
+}
+
+.badge:hover {
+    transform: scale(1.05);
+    /* يتكبر 5% عند المرور */
+}
+
+/* تحسين الجداول */
+.table tbody tr {
+    border-bottom: 1px solid #f0f0f0;
+    /* حد سفلي فاتح */
+}
+
+.table tbody tr:hover {
+    background: linear-gradient(90deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+    /* تدرج بنفسجي شفاف */
+    transform: scale(1.01);
+    /* تكبير طفيف */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    /* ظل خفيف */
+}
+
+/* تحسين حقول الإدخال */
+.form-control:focus, .form-select:focus {
+    transform: translateY(-2px);
+    /* يرتفع قليلاً عند التركيز */
+}
+
+/* تحسين القائمة العلوية */
+.navbar {
+    backdrop-filter: blur(10px);
+    /* تأثير الزجاج المصنفر */
+    background: rgba(33, 37, 41, 0.95) !important;
+    /* خلفية داكنة شفافة */
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+    /* ظل */
+}
+
+.navbar-brand {
+    transition: all 0.3s ease;
+    /* انتقال */
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+    /* يتكبر 5% */
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    /* توهج ذهبي */
+}
+
+.navbar .nav-link {
+    position: relative;
+    /* تموضع نسبي */
+}
+
+.navbar .nav-link::after {
+    /* خط سفلي متحرك */
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    /* أسفل الرابط */
+    right: 50%;
+    /* يبدأ من المنتصف */
+    width: 0;
+    /* مخفي افتراضياً */
+    height: 2px;
+    /* سماكة الخط */
+    background: #ffc107;
+    /* أصفر */
+    transition: all 0.3s ease;
+    /* انتقال */
+    transform: translateX(50%);
+    /* تصحيح الموضع */
+}
+
+.navbar .nav-link:hover::after {
+    width: 60%;
+    /* يتمدد عند المرور */
+}
+
+/* تحسين صورة الغرفة */
+.room-card img {
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    /* انتقال ارتدادي */
+}
+
+.room-card:hover img {
+    transform: scale(1.1) rotate(1deg);
+    /* تكبير + ميل طفيف */
+}
+
+/* تأثير على الأيقونات */
+.bi {
+    transition: all 0.3s ease;
+    /* انتقال */
+}
+
+.btn:hover .bi,
+.card:hover .bi {
+    transform: scale(1.15);
+    /* الأيقونات تتكبر داخل الأزرار/البطاقات */
+}
+
+/* تحسين رسائل التنبيه */
+.alert {
+    position: relative;
+    /* تموضع نسبي */
+    overflow: hidden;
+    /* إخفاء التجاوز */
+}
+
+.alert::before {
+    /* شريط جانبي ملون */
+    content: '';
+    position: absolute
